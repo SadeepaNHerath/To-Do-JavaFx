@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iCET.controller.ViewHistoryFormCalculator">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iCET.controller.ViewHistoryController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="38.0" prefHeight="44.0" prefWidth="320.0" style="-fx-background-color: #6D9886; -fx-background-radius: 20px;" text="Task History" textAlignment="CENTER" textFill="WHITE">
          <font>

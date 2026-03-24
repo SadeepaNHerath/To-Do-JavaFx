@@ -1,7 +1,7 @@
 package edu.iCET;
 
 import edu.iCET.controller.DashFormController;
-import edu.iCET.controller.ViewHistoryFormCalculator;
+import edu.iCET.controller.ViewHistoryController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,8 +20,8 @@ public class Starter extends Application {
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/img/logo.png")));
         primaryStage.setResizable(false);
         primaryStage.show();
-        ViewHistoryFormCalculator.getStage(primaryStage);
-        DashFormController.getStage(primaryStage);
+        ViewHistoryController.setStage(primaryStage);
+        DashFormController.setStage(primaryStage);
 
     }
 
