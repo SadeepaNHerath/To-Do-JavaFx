@@ -1,54 +1,52 @@
-# TaskTrack - JavaFX To-Do Application
+# TaskTrack - Advanced JavaFX To-Do Application
 
-TaskTrack is a professional, desktop-based To-Do application built using JavaFX and MySQL. It features a clean user interface powered by the JFoenix material design library and implements a robust service-oriented architecture.
+TaskTrack is a professional, cloud-enabled To-Do application built using **JavaFX** and **Appwrite Cloud**. It features a modern, mobile-inspired user interface with glassmorphism aesthetics and an asynchronous data-sync engine.
 
-![TaskTrack Logo](src/main/resources/img/logo.png)
+![TaskTrack Preview](https://github.com/SadeepaNHerath/To-Do-JavaFx/raw/main/src/main/resources/img/preview.png)
 
-## Features
+## 🌟 Features
 
-- **Custom Window Controls**: Functional Close and Minimize buttons on a custom title bar.
-- **Premium Dark Theme**: Modern aesthetics with a deep charcoal background and vibrant blue accents.
-- **Task Management**: Add new tasks with ease.
-- **Status Tracking**: Move tasks from "To-Do" to "Done" with a single click.
-- **History View**: Review all completed tasks in a detailed table.
-- **Advanced Search**: Filter completed tasks by date to find specific history.
-- **Secure Configuration**: Database credentials are managed via environment variables (`.env`).
-- **Clean Architecture**: Separation of concerns between UI (Controllers) and Logic (Services).
+- **Cloud-Native Architecture**: Powered by Appwrite TablesDB for real-time data sync across devices.
+- **Auto-Provisioning**: Automatically creates your database tables and columns in the cloud on first run.
+- **Premium Glassmorphism UI**: High-fidelity design with vibrant gradients, soft shadows, and a compact 420x720 layout.
+- **Asynchronous Execution**: Deeply optimized with thread-safe network calls to ensure a lag-free experience.
+- **Full Task Lifecycle**: Advanced Create, List, Mark-as-Done, and Delete functionality.
+- **History Tracking**: Dedicated history view with date-based search for tracking your productivity.
+- **Secure Configuration**: Cloud credentials managed via `.env` for security and deployment flexibility.
 
-## Technology Stack
+## 🛠️ Technology Stack
 
-- **Java 11+**
-- **JavaFX 19** (Controls & FXML)
-- **JFoenix** (Modern UI components)
-- **MySQL** (Database)
-- **Lombok** (Boilerplate reduction)
-- **Dotenv-Java** (Environment variable management)
-- **Maven** (Project management and build)
+- **Java 21 / JavaFX 19**: Core application framework.
+- **Appwrite Cloud**: Cloud database (Tables, Rows, Columns).
+- **OkHttp 4.12.0**: High-performance HTTP client for REST API interactions.
+- **Gson 2.11.0**: JSON parsing and serialization.
+- **JFoenix**: Material design components for JavaFX.
+- **Dotenv-Java**: Environment variable management.
+- **Maven**: Build and dependency management.
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
-1.  **MySQL Database**: Ensure a MySQL server is running on your machine.
-2.  **Database Setup**:
-    - You can use the provided [schema.sql](file:///e:/Projects/To-Do-JavaFx/schema.sql) file to set up your database.
-    - Alternatively, run the following SQL:
-    ```sql
-    CREATE DATABASE tasktrack;
-    USE tasktrack;
-
-    CREATE TABLE Tasks (
-        task_id INT AUTO_INCREMENT PRIMARY KEY,
-        task_title VARCHAR(255) NOT NULL,
-        task_status VARCHAR(50) NOT NULL,
-        completion_date DATE
-    );
-    ```
+1.  **JDK 21**: Ensure you have Java 21 installed.
+2.  **Appwrite Project**:
+    - Sign up at [cloud.appwrite.io](https://cloud.appwrite.io).
+    - Create a new project and note your **Project ID**.
+    - Create an **API Key** with `databases.write` and `collections.read/write` scopes.
+    - Create a **Database** and note its ID.
 
 ### Configuration
 
-1.  Duplicate the `.env.example` file in the root directory and rename it to `.env`.
-2.  Update the `DB_USER` and `DB_PASSWORD` in the `.env` file with your local MySQL credentials.
+1.  **Environment Setup**:
+    - Duplicate `.env.example` and rename it to `.env`.
+    - Fill in your Appwrite credentials:
+    ```bash
+    APPWRITE_ENDPOINT=https://cloud.appwrite.io/v1
+    APPWRITE_PROJECT_ID=your_project_id
+    APPWRITE_API_KEY=your_api_key
+    APPWRITE_DATABASE_ID=todo_db
+    APPWRITE_TABLE_ID=tasks_table
+    ```
 
 ### Installation & Execution
 
@@ -61,18 +59,18 @@ TaskTrack is a professional, desktop-based To-Do application built using JavaFX 
     ```bash
     mvn javafx:run
     ```
-    *Alternatively, you can run the `edu.iCET.Main` class from your preferred IDE.*
+    *The application will automatically create the table and columns in your Appwrite project if they don't exist!*
 
-## Project Structure
+## 📁 Project Structure
 
 - `edu.iCET.Main`: The application entry point (wrapper).
 - `edu.iCET.Starter`: The main JavaFX application class.
-- `edu.iCET.controller`: Contains UI logic for different forms.
-- `edu.iCET.service`: Encapsulates business logic and database interactions.
-- `edu.iCET.db`: Manages the database connection.
-- `edu.iCET.model`: Contains data models like `Task`.
-- `edu.iCET.util`: Utility classes like `EnvLoader`.
+- `edu.iCET.controller`: UI logic and event handling.
+- `edu.iCET.service`: Cloud data logic and Appwrite API integration.
+- `edu.iCET.db`: Centralized Appwrite client and endpoint management.
+- `edu.iCET.model`: PoJo data models.
+- `edu.iCET.util`: Utility classes (EnvLoader).
 
-## License
+## 📄 License
 
 This project is open-source and available under the MIT License.
