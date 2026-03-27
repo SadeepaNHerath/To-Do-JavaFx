@@ -17,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ViewHistoryController implements Initializable {
@@ -29,7 +28,7 @@ public class ViewHistoryController implements Initializable {
     private JFXButton btnSearch;
 
     @FXML
-    private TableColumn<Task, Integer> colId;
+    private TableColumn<Task, String> colId;
 
     @FXML
     private TableColumn<Task, String> colTitle;
@@ -48,6 +47,16 @@ public class ViewHistoryController implements Initializable {
 
     private static Stage stage;
 
+    @FXML
+    void btnCloseOnAction(ActionEvent event) {
+        stage.close();
+    }
+
+    @FXML
+    void btnMinimizeOnAction(ActionEvent event) {
+        stage.setIconified(true);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setupTable();
@@ -62,14 +71,13 @@ public class ViewHistoryController implements Initializable {
     }
 
     private void loadTable() {
-        try {
-            ObservableList<Task> taskObservableList = FXCollections.observableArrayList(
-                    TaskService.getInstance().getDoneTasks()
-            );
-            tblTask.setItems(taskObservableList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        new Thread(() -> {
+            java.util.List<Task> tasks = TaskService.getInstance().getDoneTasks();
+            javafx.application.Platform.runLater(() -> {
+                ObservableList<Task> taskObservableList = FXCollections.observableArrayList(tasks);
+                tblTask.setItems(taskObservableList);
+            });
+        }).start();
     }
 
     @FXML
@@ -80,14 +88,15 @@ public class ViewHistoryController implements Initializable {
     @FXML
     void btnSearchOnAction(ActionEvent actionEvent) {
         if (dtpck.getValue() != null) {
-            try {
-                ObservableList<Task> taskObservableList = FXCollections.observableArrayList(
-                        TaskService.getInstance().searchDoneTasksByDate(dtpck.getValue())
-                );
-                tblTask.setItems(taskObservableList);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            btnSearch.setDisable(true);
+            new Thread(() -> {
+                java.util.List<Task> tasks = TaskService.getInstance().searchDoneTasksByDate(dtpck.getValue());
+                javafx.application.Platform.runLater(() -> {
+                    btnSearch.setDisable(false);
+                    ObservableList<Task> taskObservableList = FXCollections.observableArrayList(tasks);
+                    tblTask.setItems(taskObservableList);
+                });
+            }).start();
         } else {
             loadTable();
         }

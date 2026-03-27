@@ -5,46 +5,64 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iCET.controller.DashFormController">
+<AnchorPane prefHeight="720.0" prefWidth="420.0" style="-fx-background-color: transparent;" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iCET.controller.DashFormController">
    <children>
-      <JFXButton layoutX="532.0" layoutY="715.0" onAction="#btnViewHistoryOnAction" prefHeight="37.0" prefWidth="123.0" style="-fx-background-color: #4A90E2; -fx-background-radius: 10px;" text="View History" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </JFXButton>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="240.0" layoutY="28.0" prefHeight="44.0" prefWidth="320.0" style="-fx-background-color: #6D9886; -fx-background-radius: 20px;" text="TaskTrack" textAlignment="CENTER" textFill="WHITE" underline="true">
-         <font>
-            <Font name="Tahoma Bold" size="30.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="142.0" layoutY="103.0" prefHeight="44.0" prefWidth="132.0" style="-fx-background-color: #6D9886; -fx-background-radius: 20px;" text="To-Do ✍ " textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Tahoma Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="527.0" layoutY="103.0" prefHeight="44.0" prefWidth="132.0" style="-fx-background-color: #6D9886; -fx-background-radius: 20px;" text="Done  ✔" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Tahoma Bold" size="20.0" />
-         </font>
-      </Label>
-      <Pane layoutX="30.0" layoutY="708.0" prefHeight="50.0" prefWidth="357.0" style="-fx-background-color: #D9CAB3;">
+      <Pane prefHeight="720.0" prefWidth="420.0" styleClass="main-container">
          <children>
-            <JFXTextField fx:id="txtTask" layoutX="58.0" layoutY="10.0" onAction="#btnAddOnAction" prefHeight="30.0" prefWidth="295.0" promptText="Add Task">
-               <font>
-                  <Font name="System Italic" size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" minWidth="53.0" onAction="#btnAddOnAction" prefHeight="50.0" prefWidth="53.0" style="-fx-background-color: #D9CAB3;" text="+" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </JFXButton>
+            <!-- Title Bar -->
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="420.0" styleClass="title-bar">
+               <children>
+                  <Label styleClass="title-text" text="TaskTrack" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                     <children>
+                        <JFXButton onAction="#btnMinimizeOnAction" styleClass="window-control-btn" text="—" />
+                        <JFXButton onAction="#btnCloseOnAction" styleClass="window-control-btn, close-btn" text="✕" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+
+            <!-- Header Section -->
+            <VBox alignment="CENTER" layoutY="60.0" prefWidth="420.0" spacing="10.0">
+               <children>
+                  <Label styleClass="header-text" text="My Tasks" />
+                  <Label opacity="0.6" text="Organize your day, simply." textFill="WHITE" />
+               </children>
+            </VBox>
+
+            <!-- Tab Buttons (Simulated for switching views or just visual style) -->
+            <HBox alignment="CENTER" layoutY="140.0" prefWidth="420.0" spacing="20.0">
+               <children>
+                  <Label styleClass="section-label" text="To-Do" />
+                  <Label opacity="0.4" text="Done" textFill="WHITE" />
+               </children>
+            </HBox>
+
+            <!-- Task Input -->
+            <Pane layoutX="25.0" layoutY="190.0" prefHeight="60.0" prefWidth="370.0" styleClass="glass-pane">
+               <children>
+                  <JFXTextField fx:id="txtTask" layoutX="20.0" layoutY="15.0" onAction="#btnAddOnAction" prefHeight="30.0" prefWidth="280.0" promptText="What needs to be done?" styleClass="jfx-text-field" />
+                  <JFXButton layoutX="310.0" layoutY="10.0" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="40.0" styleClass="add-btn" text="+" />
+               </children>
+            </Pane>
+
+            <!-- To-Do List -->
+            <JFXListView fx:id="lstToDo" layoutX="25.0" layoutY="270.0" prefHeight="350.0" prefWidth="370.0" styleClass="jfx-list-view" />
+
+            <!-- Done List - Hidden or smaller depending on preference, for now smaller at bottom -->
+            <VBox alignment="BOTTOM_CENTER" layoutY="640.0" prefWidth="420.0" spacing="15.0">
+               <children>
+                  <JFXButton onAction="#btnViewHistoryOnAction" prefHeight="45.0" prefWidth="180.0" styleClass="button-primary" text="VIEW HISTORY" />
+               </children>
+            </VBox>
          </children>
       </Pane>
-      <JFXListView fx:id="lstToDo" layoutX="61.0" layoutY="159.0" prefHeight="533.0" prefWidth="295.0" />
-      <JFXListView fx:id="lstDone" layoutX="446.0" layoutY="159.0" prefHeight="533.0" prefWidth="295.0" />
    </children>
 </AnchorPane>

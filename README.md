@@ -6,6 +6,8 @@ TaskTrack is a professional, desktop-based To-Do application built using JavaFX 
 
 ## Features
 
+- **Custom Window Controls**: Functional Close and Minimize buttons on a custom title bar.
+- **Premium Dark Theme**: Modern aesthetics with a deep charcoal background and vibrant blue accents.
 - **Task Management**: Add new tasks with ease.
 - **Status Tracking**: Move tasks from "To-Do" to "Done" with a single click.
 - **History View**: Review all completed tasks in a detailed table.
@@ -29,6 +31,8 @@ TaskTrack is a professional, desktop-based To-Do application built using JavaFX 
 
 1.  **MySQL Database**: Ensure a MySQL server is running on your machine.
 2.  **Database Setup**:
+    - You can use the provided [schema.sql](file:///e:/Projects/To-Do-JavaFx/schema.sql) file to set up your database.
+    - Alternatively, run the following SQL:
     ```sql
     CREATE DATABASE tasktrack;
     USE tasktrack;
